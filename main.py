@@ -26,6 +26,10 @@ class Body:
 
     def physics_update(self, dt):
         self.position += self.velocity * dt
+        if width - self.position.x < self.radius or self.position.x <= self.radius:
+            self.velocity.x = -self.velocity.x
+        if height - self.position.y < self.radius or self.position.y <= self.radius:
+            self.velocity.y = -self.velocity.y
 
 earth = Body(6 * 10**24, Vector2(width / 2, height / 2), Vector2(90, 90), 30, blue)
 while running:

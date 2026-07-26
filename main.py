@@ -8,10 +8,10 @@ pygame.init()
 width = 640
 height = 440
 screen = pygame.display.set_mode((width, height))
-running = True
 clock = pygame.time.Clock()
 blue = (0, 0, 255)
 bg_color = (20, 20, 20)
+white = (255, 255, 255)
 
 class Body:
     def __init__(self, mass, position, velocity, radius, color):
@@ -25,23 +25,32 @@ class Body:
         pygame.draw.circle(screen, self.color, self.position, self.radius)
 
     def physics_update(self, dt):
-        self.position += self.velocity * dt
-        if width - self.position.x < self.radius or self.position.x <= self.radius:
-            self.velocity.x = -self.velocity.x
-        if height - self.position.y < self.radius or self.position.y <= self.radius:
-            self.velocity.y = -self.velocity.y
+            self.position += self.velocity * dt
+            if width - self.position.x < self.radius or self.position.x <= self.radius:
+                self.velocity.x = -self.velocity.x
+            if height - self.position.y < self.radius or self.position.y <= self.radius:
+                self.velocity.y = -self.velocity.y
 
 earth = Body(6 * 10**24, Vector2(width / 2, height / 2), Vector2(90, 90), 30, blue)
-while running:
-    dt = clock.tick(60) / 1000
-    for event in pygame.event.get():
-        if event.type == QUIT:
-            running = False
+moon = Body(7 * 10 ** 22, Vector2(width / 3, height / 3), Vector2(-90, -90), earth.radius * 0.27, white)
 
-    earth.physics_update(dt)
-    screen.fill(bg_color)
-    earth.draw(screen)
-    pygame.display.flip()
+def main():
+    running = True
+    while running:
+        dt = clock.tick(60) / 1000
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                running = False
 
-pygame.quit()
-sys.exit()
+        earth.physics_update(dt)
+        screen.fill(bg_color)
+        earth.draw(screen)
+        moon.physics_update(dt)
+        moon.draw(screen)
+        pygame.display.flip()
+
+    pygame.quit()
+    sys.exit()
+
+if __name__ == "__main__":
+    main()

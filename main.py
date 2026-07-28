@@ -1,8 +1,10 @@
 import pygame
+import math
 from pygame.locals import *
 from pygame.math import *
 import sys
 import physics
+from constants import *
 
 pygame.init()
 
@@ -14,8 +16,7 @@ clock = pygame.time.Clock()
 blue = (0, 0, 255)
 bg_color = (20, 20, 20)
 white = (255, 255, 255)
-#*arbitrary value
-G = 1000
+
 
 class Body:
     def __init__(self, mass, position, velocity, radius, color):
@@ -29,8 +30,8 @@ class Body:
         pygame.draw.circle(screen, self.color, self.position, self.radius)
 
 
-earth = Body(1000, Vector2(width / 2, height / 2), Vector2(10, 10), 30, blue)
-moon = Body(earth.mass *0.12, Vector2(width / 3, height / 3), Vector2(-50, 70), earth.radius * 0.27, white)
+earth = Body(EARTH_MASS, Vector2(width / 2, height / 2), Vector2(10,10), EARTH_RADIUS, blue)
+moon = Body(MOON_MASS, Vector2(width / 3, height / 3), Vector2(-50, 70), MOON_RADIUS, white)
 bodies = [earth, moon]
 def main():
     running = True

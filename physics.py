@@ -1,4 +1,4 @@
-from pygame.math import Vector2
+
 
 def calculate_gravity(body1, body2, G):
     direction = body2.position - body1.position
@@ -32,6 +32,7 @@ def handle_gravity(bodies, dt, G):
             next_body = bodies[j]
             force_vec = calculate_gravity(body, next_body, G)
             apply_gravity(body, next_body, dt, force_vec)
+            print(force_vec)
 
 def wall_collision(width, height, bodies):
     for body in bodies:

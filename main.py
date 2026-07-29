@@ -16,6 +16,7 @@ clock = pygame.time.Clock()
 blue = (0, 0, 255)
 bg_color = (20, 20, 20)
 white = (255, 255, 255)
+red = (255, 0, 0)
 
 
 class Body:
@@ -31,8 +32,9 @@ class Body:
 
 
 earth = Body(EARTH_MASS, Vector2(width / 2, height / 2), Vector2(10,10), EARTH_RADIUS, blue)
-moon = Body(MOON_MASS, Vector2(width / 3, height / 3), Vector2(-50, 70), MOON_RADIUS, white)
-bodies = [earth, moon]
+moon = Body(MOON_MASS, Vector2(width / 3, height / 3), Vector2(50, 70), MOON_RADIUS, white)
+mars = Body(MARS_MASS, Vector2(width / 3, height / 3 +100), Vector2(-60, -50), MARS_RADIUS, red)
+bodies = [earth, moon, mars]
 def main():
     running = True
     while running:

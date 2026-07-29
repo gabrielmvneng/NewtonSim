@@ -32,7 +32,6 @@ def handle_gravity(bodies, dt, G):
             next_body = bodies[j]
             force_vec = calculate_gravity(body, next_body, G)
             apply_gravity(body, next_body, dt, force_vec)
-            print(force_vec)
 
 def wall_collision(width, height, bodies):
     for body in bodies:
